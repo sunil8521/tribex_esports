@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import type { Request, Response, RequestHandler } from 'express';
 import { asyncHandler } from '../../utils/asyncHandler.js';
 import * as regService from './registration.service.js';
 import * as credService from './credentials.service.js';
@@ -10,7 +10,7 @@ import {
 
 /* ── Register ──────────────────────────────────────────────── */
 
-export const register = asyncHandler(async (req: Request, res: Response) => {
+export const register:RequestHandler = asyncHandler(async (req: Request, res: Response) => {
     const { params, body } = registerForTournamentSchema.parse({
         params: req.params,
         body: req.body
@@ -31,14 +31,14 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
 
 /* ── My Registrations ──────────────────────────────────────── */
 
-export const myRegistrations = asyncHandler(async (req: Request, res: Response) => {
+export const myRegistrations:RequestHandler = asyncHandler(async (req: Request, res: Response) => {
     const regs = await regService.getMyRegistrations(req.userId!);
     res.json({ success: true, data: regs });
 });
 
 /* ── Cancel ────────────────────────────────────────────────── */
 
-export const cancel = asyncHandler(async (req: Request, res: Response) => {
+export const cancel:RequestHandler = asyncHandler(async (req: Request, res: Response) => {
     const { params } = cancelRegistrationSchema.parse({ params: req.params });
     const result = await regService.cancelRegistration(req.userId!, params.id);
     res.json({ success: true, ...result });
@@ -46,7 +46,7 @@ export const cancel = asyncHandler(async (req: Request, res: Response) => {
 
 /* ── Match Credentials ─────────────────────────────────────── */
 
-export const getCredentials = asyncHandler(async (req: Request, res: Response) => {
+export const getCredentials:RequestHandler = asyncHandler(async (req: Request, res: Response) => {
     const { params } = matchIdParamSchema.parse({ params: req.params });
     const result = await credService.getMatchCredentials(req.userId!, params.matchId);
     res.json({ success: true, data: result });
