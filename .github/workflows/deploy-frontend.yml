@@ -35,7 +35,7 @@ jobs:
         working-directory: website
         env:
           # Public vars (baked into the client bundle at build time)
-          NEXT_PUBLIC_API_BASE_URL: https://api.blogapp.tech
+          NEXT_PUBLIC_API_BASE_URL: https://api.tribexesports.com
           NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           # Server-only var (used by proxy.ts at runtime)
           JWT_ACCESS_SECRET: ${{ secrets.JWT_ACCESS_SECRET }}

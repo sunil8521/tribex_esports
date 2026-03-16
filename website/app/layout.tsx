@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "TribeX eSports - organize and compete in tournaments for PUBG, Free Fire, and more.",
 };
 
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
