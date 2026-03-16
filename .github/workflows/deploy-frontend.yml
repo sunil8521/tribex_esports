@@ -81,7 +81,7 @@ jobs:
             tar -xzf /tmp/website.tar.gz -C .
             rm -f /tmp/website.tar.gz
 
-            if pm2 describe tribex-web > /dev/null 2>&1; then
+            if pm2 delete tribex-web > /dev/null 2>&1; then
               pm2 restart tribex-web
             else
               pm2 start server.js --name tribex-web --env PORT=3000
